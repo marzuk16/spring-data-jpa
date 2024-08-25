@@ -26,8 +26,8 @@ public class PersistenceConfig {
         return datasource;
     }
 
-    @Bean
-    LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+    @Bean(name = "entityManagerFactory") // use bean name `entityManagerFactory` while using SPRING DATA JPA
+    LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
         emf.setPackagesToScan("org.example.entity");
