@@ -9,6 +9,7 @@ import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.entity.Student;
+import org.example.entity.Student_;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class StudentDAO {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
         Root<Student> root = criteriaQuery.from(Student.class);
-        Predicate equalId = criteriaBuilder.equal(root.get("studentId"), id);
+        Predicate equalId = criteriaBuilder.equal(root.get(Student_.studentId), id);
         criteriaQuery.where(equalId);
 
         TypedQuery<Student> query = em.createQuery(criteriaQuery);

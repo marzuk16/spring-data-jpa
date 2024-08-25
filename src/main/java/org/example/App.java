@@ -30,6 +30,6 @@ public class App
 
         System.out.println(studentDAO.findAllStudents());
 
-        System.out.println(studentDAO.getById(1L));
+        System.out.println(studentDAO.getById(2L));
     }
 }
