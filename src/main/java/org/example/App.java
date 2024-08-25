@@ -29,5 +29,7 @@ public class App
         studentDAO.saveStudent(student);
 
         System.out.println(studentDAO.findAllStudents());
+
+        System.out.println(studentDAO.getById(1L));
     }
 }

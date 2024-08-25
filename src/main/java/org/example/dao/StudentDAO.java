@@ -2,12 +2,17 @@ package org.example.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.entity.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -36,5 +41,17 @@ public class StudentDAO {
 
         System.out.println("====================== Fetched All ( " + students.size() + " ) Students. =======================");
         return students;
+    }
+
+    public Student getById(Long id){
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> root = criteriaQuery.from(Student.class);
+        Predicate equalId = criteriaBuilder.equal(root.get("studentId"), id);
+        criteriaQuery.where(equalId);
+
+        TypedQuery<Student> query = em.createQuery(criteriaQuery);
+
+        return query.getSingleResult();
     }
 }
