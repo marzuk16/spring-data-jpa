@@ -11,7 +11,7 @@ public class ProductDAO {
     private final JdbcTemplate jdbcTemplate;
 
     public void save(Product product){
-        String insertSql = "INSERT INTO PRODUCTS VALUES (?, ?)";
+        String insertSql = "INSERT INTO PRODUCTS VALUES (?,?)";
         Object[] args = {product.getProductId(), product.getName()};
 
         jdbcTemplate.update(insertSql, args);
