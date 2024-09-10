@@ -22,6 +22,7 @@ public class PersistenceConfig {
         datasource.setUrl(System.getenv("DB_SERVER"));
         datasource.setUsername(System.getenv("DB_USERNAME"));
         datasource.setPassword(System.getenv("DB_PASSWORD"));
+        datasource.setSchema(System.getenv("JPA_SCHEMA"));
 
         return datasource;
     }
